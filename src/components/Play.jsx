@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Button from './Button';
-import moment from 'moment';
 import classNames from 'classnames';
 import nextTick from 'logic/nextTick';
+import { formatTimer } from 'utils/time';
+
 import { 
   PLAYBACK_WORK,
   PLAYBACK_REST,
@@ -24,12 +25,6 @@ export default ({ reps, repSecs, restSecs, onPlayFinish }) => {
     }
     return defaults;
    };
-
-  const formatCount = (remaining) => {
-    return moment().startOf('day')
-      .seconds(remaining)
-      .format('mm:ss');
-  }
 
   const reset = () => {
     onPlayFinish();
@@ -151,7 +146,7 @@ export default ({ reps, repSecs, restSecs, onPlayFinish }) => {
     </p>
 
   const counter =
-    <p className="text-5xl font-mono">{formatCount(seconds)}</p>
+    <p className="text-5xl font-mono">{formatTimer(seconds)}</p>
 
   const repDots =
     <div className="flex justify-center w-full">
